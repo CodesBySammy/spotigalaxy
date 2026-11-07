@@ -1,40 +1,46 @@
 <!doctype html>
 <html lang="en" class="dark">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="theme-color" content="#020208" />
 
-    <!-- Primary Search Engine Optimization (SEO) -->
-    <title>SpotiGalaxy — Real-Time 3D Spotify Audio Visualizer & Synced Lyrics</title>
-    <meta name="title" content="SpotiGalaxy — Real-Time 3D Spotify Audio Visualizer & Synced Lyrics" />
-    <meta name="description" content="Experience Spotify in a living 3D cosmic galaxy. Real-time celestial constellations, time-synced lyrics, and audio-reactive nebulae synchronized to your music." />
-    <meta name="keywords" content="SpotiGalaxy, spotify visualizer, 3d spotify visualizer, spotify lyrics visualizer, synced lyrics, 3d music space, spotify webgl, spotify constellation, audio visualizer web, aesthetic music player" />
-    <meta name="author" content="SpotiGalaxy" />
-    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-    <link rel="canonical" href="https://spotigalaxy.vercel.app/" />
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌌</text></svg>" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#020208" />
 
-    <!-- Google Search Console Verification Tag (Injected via VITE_GOOGLE_SITE_VERIFICATION or Vercel Environment Variables) -->
-    <meta name="google-site-verification" content="%VITE_GOOGLE_SITE_VERIFICATION%" />
+  <!-- Primary Search Engine Optimization (SEO) -->
+  <title>SpotiGalaxy — Real-Time 3D Spotify Audio Visualizer & Synced Lyrics</title>
+  <meta name="title" content="SpotiGalaxy — Real-Time 3D Spotify Audio Visualizer & Synced Lyrics" />
+  <meta name="description"
+    content="Experience Spotify in a living 3D cosmic galaxy. Real-time celestial constellations, time-synced lyrics, and audio-reactive nebulae synchronized to your music." />
+  <meta name="keywords"
+    content="SpotiGalaxy, spotify visualizer, 3d spotify visualizer, spotify lyrics visualizer, synced lyrics, 3d music space, spotify webgl, spotify constellation, audio visualizer web, aesthetic music player" />
+  <meta name="author" content="SpotiGalaxy" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <link rel="canonical" href="https://spotigalaxy.vercel.app/" />
 
-    <!-- Open Graph / Facebook / Discord / WhatsApp -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://spotigalaxy.vercel.app/" />
-    <meta property="og:title" content="SpotiGalaxy — 3D Audio Visualizer & Synced Lyrics for Spotify" />
-    <meta property="og:description" content="Watch your music illuminate 3D galactic star systems in real time with millisecond-synced lyrics." />
-    <meta property="og:image" content="https://spotigalaxy.vercel.app/og-preview.png" />
-    <meta property="og:site_name" content="SpotiGalaxy" />
+  <!-- Google Search Console Verification Tag (Injected via VITE_GOOGLE_SITE_VERIFICATION or Vercel Environment Variables) -->
+  <meta name="google-site-verification" content="%VITE_GOOGLE_SITE_VERIFICATION%" />
 
-    <!-- Twitter / X Cards -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://spotigalaxy.vercel.app/" />
-    <meta name="twitter:title" content="SpotiGalaxy — Real-Time 3D Spotify Audio Visualizer" />
-    <meta name="twitter:description" content="Turn Spotify tracks into interactive 3D constellations with sub-second synced lyrics." />
-    <meta name="twitter:image" content="https://spotigalaxy.vercel.app/og-preview.png" />
+  <!-- Open Graph / Facebook / Discord / WhatsApp -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://spotigalaxy.vercel.app/" />
+  <meta property="og:title" content="SpotiGalaxy — 3D Audio Visualizer & Synced Lyrics for Spotify" />
+  <meta property="og:description"
+    content="Watch your music illuminate 3D galactic star systems in real time with millisecond-synced lyrics." />
+  <meta property="og:image" content="https://spotigalaxy.vercel.app/og-preview.png" />
+  <meta property="og:site_name" content="SpotiGalaxy" />
 
-    <!-- Schema.org JSON-LD Structured Data for Google Rich Snippets -->
-    <script type="application/ld+json">
+  <!-- Twitter / X Cards -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://spotigalaxy.vercel.app/" />
+  <meta name="twitter:title" content="SpotiGalaxy — Real-Time 3D Spotify Audio Visualizer" />
+  <meta name="twitter:description"
+    content="Turn Spotify tracks into interactive 3D constellations with sub-second synced lyrics." />
+  <meta name="twitter:image" content="https://spotigalaxy.vercel.app/og-preview.png" />
+
+  <!-- Schema.org JSON-LD Structured Data for Google Rich Snippets -->
+  <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
@@ -59,13 +65,17 @@
     }
     </script>
 
-    <!-- Google Fonts: Space Grotesk & Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-[#020208] text-slate-100 overflow-hidden select-none">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+  <!-- Google Fonts: Space Grotesk & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+</head>
+
+<body class="bg-[#020208] text-slate-100 overflow-hidden select-none">
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>
