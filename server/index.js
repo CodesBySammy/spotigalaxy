@@ -28,6 +28,9 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:5173';
 
+// Trust reverse proxy (Render, Cloudflare, AWS ALB) for accurate client IP resolution
+app.set('trust proxy', 1);
+
 // Security Headers with Helmet
 app.use(helmet({
   contentSecurityPolicy: false, // Handled per-environment for WebGL/CDN
@@ -41,6 +44,7 @@ const apiLimiter = rateLimit({
   max: 120, // 120 requests per minute per IP
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { xForwardedForHeader: false, forwardedHeader: false },
   message: { error: 'TooManyRequests', message: 'Rate limit exceeded. Please wait a moment.' }
 });
 
@@ -49,6 +53,7 @@ const authLimiter = rateLimit({
   max: 45, // 45 auth attempts per 15 min
   standardHeaders: true,
   legacyHeaders: false,
+  validate: { xForwardedForHeader: false, forwardedHeader: false },
   message: { error: 'TooManyRequests', message: 'Too many authentication attempts. Try again later.' }
 });
 
