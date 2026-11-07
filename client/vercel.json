@@ -4,6 +4,26 @@
   "framework": "vite",
   "rewrites": [
     {
+      "source": "/api/:path*",
+      "destination": "https://spotigalaxy-backend.onrender.com/api/:path*"
+    },
+    {
+      "source": "/login",
+      "destination": "https://spotigalaxy-backend.onrender.com/login"
+    },
+    {
+      "source": "/callback",
+      "destination": "https://spotigalaxy-backend.onrender.com/callback"
+    },
+    {
+      "source": "/refresh_token",
+      "destination": "https://spotigalaxy-backend.onrender.com/refresh_token"
+    },
+    {
+      "source": "/logout",
+      "destination": "https://spotigalaxy-backend.onrender.com/logout"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
@@ -37,4 +57,3 @@
     }
   ]
 }
-
