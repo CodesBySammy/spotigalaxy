@@ -1,0 +1,34 @@
+{
+  "name": "lyrical-constellation",
+  "version": "1.0.0",
+  "description": "Real-time 3D Audio Visualizer connecting Spotify Web API and LRCLIB to WebGL Constellations",
+  "private": true,
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "start": "node server/index.js",
+    "server": "npm --prefix server run dev",
+    "client": "npm --prefix client run dev",
+    "dev": "concurrently \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "build": "npm --prefix client run build",
+    "test:server": "npm --prefix server test"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "keywords": [
+    "spotify",
+    "threejs",
+    "webgl",
+    "r3f",
+    "react-three-fiber",
+    "lyrics",
+    "audio-visualizer",
+    "lrclib"
+  ],
+  "author": "Lyrical Constellation Team",
+  "license": "MIT"
+}
+

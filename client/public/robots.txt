@@ -1,0 +1,8 @@
+# SpotiGalaxy Robots.txt
+# Allows complete crawling by Googlebot and all search engines
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://spotigalaxy.vercel.app/sitemap.xml
