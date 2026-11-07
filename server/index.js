@@ -15,6 +15,7 @@ import { fileURLToPath } from 'url';
 import authRouter from './routes/auth.js';
 import spotifyRouter from './routes/spotify.js';
 import lyricsRouter from './routes/lyrics.js';
+import { initKeepAlive } from './utils/keepAlive.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -89,7 +90,7 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
-    service: 'Lyrical Constellation Server',
+    service: 'SpotiGalaxy Server',
     nodeEnv: process.env.NODE_ENV || 'development'
   });
 });
@@ -132,8 +133,10 @@ app.use((err, req, res, next) => {
 
 // Start listening
 const server = app.listen(PORT, () => {
-  console.log(`✨ Lyrical Constellation Server running on http://localhost:${PORT}`);
+  console.log(`✨ SpotiGalaxy Server running on http://localhost:${PORT}`);
   console.log(`🔗 Configured Client URL: ${CLIENT_URL}`);
+  // Initialize self-ping keep-alive heartbeat for cloud platforms like Render
+  initKeepAlive();
 });
 
 server.on('error', (err) => {
