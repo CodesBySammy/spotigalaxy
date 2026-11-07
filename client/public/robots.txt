@@ -6,3 +6,4 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://spotigalaxy.vercel.app/sitemap.xml
+
