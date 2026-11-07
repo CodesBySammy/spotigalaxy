@@ -13,6 +13,8 @@ import { PlayerHUD } from './components/UI/PlayerHUD';
 import { LandingPage } from './components/UI/LandingPage';
 import { IdleState } from './components/UI/IdleState';
 import { ToastNotification } from './components/UI/ToastNotification';
+import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 export const App: React.FC = () => {
   const isAuthenticated = useStore((state) => state.isAuthenticated);
@@ -92,46 +94,50 @@ export const App: React.FC = () => {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  // Unauthenticated State: Show Landing Page
-  if (!isAuthenticated) {
-    return (
-      <main className="relative w-full h-full min-h-screen overflow-hidden bg-[#020208]">
-        <LandingPage />
-        <ToastNotification />
-      </main>
-    );
-  }
-
-  // Authenticated State: Full 3D Visualizer Experience
   return (
-    <main className="relative w-full h-full min-h-screen overflow-hidden bg-[#020208]">
-      {/* 1. Fullscreen WebGL 3D Canvas */}
-      <ConstellationCanvas />
+    <>
+      <main className="relative w-full h-full min-h-screen overflow-hidden bg-[#020208]">
+        {!isAuthenticated ? (
+          <>
+            <LandingPage />
+            <ToastNotification />
+          </>
+        ) : (
+          <>
+            {/* 1. Fullscreen WebGL 3D Canvas */}
+            <ConstellationCanvas />
 
-      {/* 2. Ambient Vibe Border with Inset Shadow Aura */}
-      {!zenMode && <VibeBorders />}
+            {/* 2. Ambient Vibe Border with Inset Shadow Aura */}
+            {!zenMode && <VibeBorders />}
 
-      {/* 3. Top Header HUD with telemetry and camera controls */}
-      {!zenMode && <TopNav />}
+            {/* 3. Top Header HUD with telemetry and camera controls */}
+            {!zenMode && <TopNav />}
 
-      {/* 4. Idle State when no track is currently playing */}
-      {!currentTrack && <IdleState />}
+            {/* 4. Idle State when no track is currently playing */}
+            {!currentTrack && <IdleState />}
 
-      {/* 5. Bottom Track Playback Bar and Active Lyric Spotlight */}
-      {currentTrack && !zenMode && <PlayerHUD />}
+            {/* 5. Bottom Track Playback Bar and Active Lyric Spotlight */}
+            {currentTrack && !zenMode && <PlayerHUD />}
 
-      {/* Zen Mode hint button in bottom-right */}
-      <button
-        onClick={() => setZenMode((prev) => !prev)}
-        title={zenMode ? 'Show HUD (Press H)' : 'Zen Wallpaper Mode (Press H)'}
-        className="fixed bottom-4 right-4 z-40 px-2.5 py-1 rounded-lg glass-panel text-[10px] font-mono text-slate-400 hover:text-white transition-opacity border-white/5 opacity-40 hover:opacity-100"
-      >
-        {zenMode ? 'Exit Zen (H)' : 'Zen Mode (H)'}
-      </button>
+            {/* Zen Mode hint button in bottom-right */}
+            <button
+              onClick={() => setZenMode((prev) => !prev)}
+              title={zenMode ? 'Show HUD (Press H)' : 'Zen Wallpaper Mode (Press H)'}
+              className="fixed bottom-4 right-4 z-40 px-2.5 py-1 rounded-lg glass-panel text-[10px] font-mono text-slate-400 hover:text-white transition-opacity border-white/5 opacity-40 hover:opacity-100"
+            >
+              {zenMode ? 'Exit Zen (H)' : 'Zen Mode (H)'}
+            </button>
 
-      {/* 6. Floating System Notifications */}
-      <ToastNotification />
-    </main>
+            {/* 6. Floating System Notifications */}
+            <ToastNotification />
+          </>
+        )}
+      </main>
+
+      {/* Vercel Web Analytics & Core Web Vitals Speed Insights */}
+      <Analytics />
+      <SpeedInsights />
+    </>
   );
 };
 
