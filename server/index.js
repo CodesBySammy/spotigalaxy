@@ -10,6 +10,7 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import path from 'path';
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 
 import authRouter from './routes/auth.js';
@@ -104,9 +105,12 @@ app.use('/api', spotifyRouter);
 // Lyrics routes (/api/lyrics)
 app.use('/api/lyrics', lyricsRouter);
 
-// In production, serve built client static assets and support SPA fallback
-if (process.env.NODE_ENV === 'production') {
-  const clientDistPath = path.join(__dirname, '../client/dist');
+// In production, serve built client static assets if present (monorepo mode)
+// or serve a clean API landing/redirect in standalone backend mode (Render/Railway)
+const clientDistPath = path.join(__dirname, '../client/dist');
+const indexHtmlPath = path.join(clientDistPath, 'index.html');
+
+if (fs.existsSync(indexHtmlPath)) {
   app.use(express.static(clientDistPath));
   app.get('*', (req, res, next) => {
     if (
@@ -118,7 +122,25 @@ if (process.env.NODE_ENV === 'production') {
     ) {
       return next();
     }
-    res.sendFile(path.join(clientDistPath, 'index.html'));
+    res.sendFile(indexHtmlPath);
+  });
+} else {
+  // Standalone API Mode: root endpoint returns service info or redirects to active frontend
+  app.get('/', (req, res) => {
+    if (
+      CLIENT_URL &&
+      !CLIENT_URL.includes('localhost') &&
+      !CLIENT_URL.includes('127.0.0.1') &&
+      !CLIENT_URL.includes('your-frontend.vercel.app')
+    ) {
+      return res.redirect(CLIENT_URL);
+    }
+    res.json({
+      service: 'SpotiGalaxy API Server',
+      status: 'online',
+      clientUrl: CLIENT_URL,
+      endpoints: ['/api/health', '/api/now-playing', '/api/lyrics', '/login', '/callback']
+    });
   });
 }
 
